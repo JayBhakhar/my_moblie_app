@@ -19,13 +19,11 @@ class _ScansState extends State<Scans> {
             colour: Colors.white,
             cardChild: Icon(Icons.add),
             onPress: () {},
-            text: '1',
           ),
           AddPhotosContainer(
             colour: Colors.white,
             cardChild: Icon(Icons.add),
             onPress: () {},
-            text: '2',
           ),
         ],
       ),

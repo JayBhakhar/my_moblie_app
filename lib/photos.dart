@@ -28,8 +28,8 @@ class _PhotosState extends State<Photos> {
                       Icons.add,
                     ),
                     colour: Colors.white,
-                    text: '1. анфас',
                   ),
+                  //todo: need to add text here but it mess up to layout of add photo
                 ),
                 Expanded(
                   child: AddPhotosContainer(
@@ -38,34 +38,6 @@ class _PhotosState extends State<Photos> {
                       Icons.add,
                     ),
                     colour: Colors.white,
-                    text: '2',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                  child: AddPhotosContainer(
-                    onPress: () {}, //todo:add photo from gallaery
-                    cardChild: Icon(
-                      Icons.add,
-                    ),
-                    colour: Colors.white,
-                    text: '3',
-                  ),
-                ),
-                Expanded(
-                  child: AddPhotosContainer(
-                    onPress: () {}, //todo:add photo from gallaery
-                    cardChild: Icon(
-                      Icons.add,
-                    ),
-                    colour: Colors.white,
-                    text: '4',
                   ),
                 ),
               ],
@@ -82,7 +54,6 @@ class _PhotosState extends State<Photos> {
                       Icons.add,
                     ),
                     colour: Colors.white,
-                    text: '5',
                   ),
                 ),
                 Expanded(
@@ -92,7 +63,22 @@ class _PhotosState extends State<Photos> {
                       Icons.add,
                     ),
                     colour: Colors.white,
-                    text: '6',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: AddPhotosContainer(
+                    onPress: () {}, //todo:add photo from gallaery
+                    cardChild: Icon(
+                      Icons.add,
+                    ),
+                    colour: Colors.white,
                   ),
                 ),
                 Expanded(
@@ -102,7 +88,15 @@ class _PhotosState extends State<Photos> {
                       Icons.add,
                     ),
                     colour: Colors.white,
-                    text: 'add',
+                  ),
+                ),
+                Expanded(
+                  child: AddPhotosContainer(
+                    onPress: () {}, //todo:add photo from gallaery
+                    cardChild: Icon(
+                      Icons.add,
+                    ),
+                    colour: Colors.white,
                   ),
                 ),
               ],

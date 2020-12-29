@@ -23,7 +23,6 @@ class _XrayAndCtState extends State<XrayAndCt> {
               colour: Colors.white,
               cardChild: Icon(Icons.add),
               onPress: () {},
-              text: '1.dydhjjchj',
             ),
           ),
           Expanded(
@@ -32,7 +31,6 @@ class _XrayAndCtState extends State<XrayAndCt> {
               colour: Colors.white,
               cardChild: Icon(Icons.add),
               onPress: () {},
-              text: '2.sdfxhxfghf',
             ),
           ),
           Expanded(
@@ -41,7 +39,6 @@ class _XrayAndCtState extends State<XrayAndCt> {
               colour: Colors.white,
               cardChild: Icon(Icons.add),
               onPress: () {},
-              text: '3.djhcccghh',
             ),
           ),
         ],
