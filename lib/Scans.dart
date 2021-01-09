@@ -14,16 +14,22 @@ class _ScansState extends State<Scans> {
         title: Text('Scans'),
       ),
       body: Column(
-        children: <Widget>[
-          AddPhotosContainer(
-            colour: Colors.white,
-            cardChild: Icon(Icons.add),
-            onPress: () {},
+        children: [
+          Expanded(
+            child: AddPhotosContainer(
+              colour: Colors.white,
+              cardChild: Icon(Icons.add),
+              onPress: () {},
+              text: '1',
+            ),
           ),
-          AddPhotosContainer(
-            colour: Colors.white,
-            cardChild: Icon(Icons.add),
-            onPress: () {},
+          Expanded(
+            child: AddPhotosContainer(
+              colour: Colors.white,
+              cardChild: Icon(Icons.add),
+              onPress: () {},
+              text: '2',
+            ),
           ),
         ],
       ),

@@ -16,7 +16,7 @@ class _PatientDetailsState extends State<PatientDetails> {
       appBar: AppBar(
         title: Text('Patient Details'),
       ),
-      body: Column(
+      body: ListView(
         children: [
           InputTextField('Surename'),
           InputTextField('Name'),

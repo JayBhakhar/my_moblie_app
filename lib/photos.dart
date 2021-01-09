@@ -9,15 +9,94 @@ class Photos extends StatefulWidget {
 }
 
 class _PhotosState extends State<Photos> {
-  File _image;
+  File _image1;
+  File _image2;
+  File _image3;
+  File _image4;
+  File _image5;
+  File _image6;
+  File _image7;
+
   final picker = ImagePicker();
 
-  Future getImage() async {
+  Future getImage1() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
-        _image = File(pickedFile.path);
+        _image1 = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future getImage2() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image2 = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future getImage3() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image3 = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future getImage4() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image4 = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future getImage5() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image5 = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future getImage6() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image6 = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future getImage7() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image7 = File(pickedFile.path);
       } else {
         print('No image selected.');
       }
@@ -40,20 +119,23 @@ class _PhotosState extends State<Photos> {
               children: [
                 Expanded(
                   child: AddPhotosContainer(
-                    onPress: getImage, //todo:add photo from gallaery
-                    cardChild:
-                        _image == null ? Icons.add_a_photo : Image.file(_image),
+                    onPress: getImage1,
+                    cardChild: _image1 == null
+                        ? Image.asset('images/myphoto.jpg') //todo: change photo
+                        : Image.file(_image1),
                     colour: Colors.white,
+                    text: '1. anfac s ubkoi',
                   ),
-                  //todo: need to add text here but it mess up to layout of add photo
                 ),
                 Expanded(
                   child: AddPhotosContainer(
-                    onPress: () {}, //todo:add photo from gallaery
-                    cardChild: Icon(
-                      Icons.add_a_photo,
-                    ),
+                    onPress: getImage2,
+                    cardChild: _image2 == null
+                        ? Icon(Icons.add_a_photo)
+                        : Image.file(_image2),
+                    //todo: add close icon when user already selected a photo
                     colour: Colors.white,
+                    text: '2',
                   ),
                 ),
               ],
@@ -65,20 +147,22 @@ class _PhotosState extends State<Photos> {
               children: [
                 Expanded(
                   child: AddPhotosContainer(
-                    onPress: () {}, //todo:add photo from gallaery
-                    cardChild: Icon(
-                      Icons.add_a_photo,
-                    ),
+                    onPress: getImage3,
+                    cardChild: _image3 == null
+                        ? Icon(Icons.add_a_photo)
+                        : Image.file(_image3),
                     colour: Colors.white,
+                    text: '3',
                   ),
                 ),
                 Expanded(
                   child: AddPhotosContainer(
-                    onPress: () {}, //todo:add photo from gallaery
-                    cardChild: Icon(
-                      Icons.add_a_photo,
-                    ),
+                    onPress: getImage4,
+                    cardChild: _image4 == null
+                        ? Icon(Icons.add_a_photo)
+                        : Image.file(_image4),
                     colour: Colors.white,
+                    text: '4',
                   ),
                 ),
               ],
@@ -90,34 +174,43 @@ class _PhotosState extends State<Photos> {
               children: [
                 Expanded(
                   child: AddPhotosContainer(
-                    onPress: () {}, //todo:add photo from gallaery
-                    cardChild: Icon(
-                      Icons.add_a_photo,
-                    ),
+                    onPress: getImage5,
+                    cardChild: _image5 == null
+                        ? Icon(Icons.add_a_photo)
+                        : Image.file(_image5),
                     colour: Colors.white,
+                    text: '5',
                   ),
                 ),
                 Expanded(
                   child: AddPhotosContainer(
-                    onPress: () {}, //todo:add photo from gallaery
-                    cardChild: Icon(
-                      Icons.add_a_photo,
-                    ),
+                    onPress: getImage6,
+                    cardChild: _image6 == null
+                        ? Icon(Icons.add_a_photo)
+                        : Image.file(_image6),
                     colour: Colors.white,
+                    text: '6',
                   ),
                 ),
                 Expanded(
                   child: AddPhotosContainer(
-                    onPress: () {}, //todo:add photo from gallaery
-                    cardChild: Icon(
-                      Icons.add_a_photo,
-                    ),
+                    onPress: getImage7,
+                    cardChild: _image7 == null
+                        ? Icon(Icons.add_a_photo)
+                        : Image.file(_image7),
                     colour: Colors.white,
+                    text: '7',
                   ),
                 ),
               ],
             ),
-          )
+          ),
+          FlatButton(
+            onPressed: () {},
+            child: Text(
+              'submit',
+            ),
+          ), //TOdo: submit button and data to database
         ],
       ),
     );
