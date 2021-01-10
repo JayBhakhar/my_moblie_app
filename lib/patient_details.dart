@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart' as validator;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PatientDetails extends StatefulWidget {
   @override
@@ -9,9 +10,17 @@ class PatientDetails extends StatefulWidget {
 enum Gender { Male, Female, Other }
 
 class _PatientDetailsState extends State<PatientDetails> {
+  final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   Gender selectedGender = Gender.Male;
   String surename;
+  String name;
+  String fatherName;
+  String dateOfBirth;
+  String age;
+  String comment;
+  String moblieNo;
+  String email;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +34,7 @@ class _PatientDetailsState extends State<PatientDetails> {
           children: [
             InputTextField(
               text: 'Surename',
-              onSaved: (value) {
+              onChanged: (value) {
                 surename = value;
                 print(surename); // todo:probebly from here save to database
               },
@@ -38,6 +47,9 @@ class _PatientDetailsState extends State<PatientDetails> {
             ),
             InputTextField(
               text: 'Name',
+              onChanged: (value) {
+                name = value;
+              },
               validator: (String value) {
                 if (value.isEmpty) {
                   return 'Enter your Name';
@@ -47,6 +59,9 @@ class _PatientDetailsState extends State<PatientDetails> {
             ),
             InputTextField(
               text: 'Father Name',
+              onChanged: (value) {
+                fatherName = value;
+              },
               validator: (String value) {
                 if (value.isEmpty) {
                   return 'Enter your Father Name';
@@ -100,6 +115,9 @@ class _PatientDetailsState extends State<PatientDetails> {
                   flex: 4,
                   child: InputTextField(
                     text: 'Date of Birth',
+                    onChanged: (value) {
+                      dateOfBirth = value;
+                    },
                     keyboardType: TextInputType.datetime,
                     validator: (String value) {
                       if (value.isEmpty) {
@@ -114,6 +132,10 @@ class _PatientDetailsState extends State<PatientDetails> {
                   flex: 2,
                   child: InputTextField(
                     text: 'Age',
+                    onChanged: (value) {
+                      age = value;
+                      print(age);
+                    },
                     keyboardType: TextInputType.number,
                     validator: (String value) {
                       if (value.isEmpty) {
@@ -125,13 +147,24 @@ class _PatientDetailsState extends State<PatientDetails> {
                 ),
               ],
             ),
-            InputTextField(text: 'Comment'),
+            InputTextField(
+              text: 'Comment',
+              onChanged: (value) {
+                comment = value;
+              },
+            ),
             InputTextField(
               text: 'Moblie No.',
+              onChanged: (value) {
+                moblieNo = value;
+              },
               keyboardType: TextInputType.phone,
             ),
             InputTextField(
               text: 'Email',
+              onChanged: (value) {
+                email = value;
+              },
               keyboardType: TextInputType.emailAddress,
               validator: (String value) {
                 if (!validator.isEmail(value)) {
@@ -141,10 +174,24 @@ class _PatientDetailsState extends State<PatientDetails> {
               },
             ),
             FlatButton(
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  // _formKey.currentState.save();
-                  print('yes');
+              onPressed: () async {
+                try {
+                  if (_formKey.currentState.validate()) {
+                    await db.collection('patient_details').add({
+                      'surename': surename,
+                      'name': name,
+                      'fatherName': fatherName,
+                      'gender': Gender,
+                      'dateOfBirth': dateOfBirth,
+                      'age': age,
+                      'comment': comment,
+                      'moblieNo': moblieNo,
+                      'email': email,
+                    });
+                    print('done'); // for check
+                  }
+                } catch (e) {
+                  print(e);
                 }
               }, // todo: sent to database
               child: Text(
@@ -161,13 +208,13 @@ class _PatientDetailsState extends State<PatientDetails> {
 class InputTextField extends StatelessWidget {
   InputTextField({
     this.text,
-    this.onSaved,
+    this.onChanged,
     this.validator,
     this.keyboardType,
   });
 
   final String text;
-  final Function onSaved;
+  final Function onChanged;
   final Function validator;
   final TextInputType keyboardType;
 
@@ -187,7 +234,7 @@ class InputTextField extends StatelessWidget {
           ),
         ),
         validator: validator,
-        onSaved: onSaved,
+        onChanged: onChanged,
         keyboardType: keyboardType,
       ),
     );
