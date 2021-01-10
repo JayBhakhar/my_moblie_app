@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    Navigator.pop(context); //Todo:navigator to home sceen
+                    Navigator.pop(context);
                   },
                   child: Row(
                     children: [

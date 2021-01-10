@@ -10,6 +10,7 @@ class PatientDetails extends StatefulWidget {
 enum Gender { Male, Female, Other }
 
 class _PatientDetailsState extends State<PatientDetails> {
+  final surenameTextController = TextEditingController();
   final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   Gender selectedGender = Gender.Male;
@@ -34,9 +35,10 @@ class _PatientDetailsState extends State<PatientDetails> {
           children: [
             InputTextField(
               text: 'Surename',
+              controller: surenameTextController,
               onChanged: (value) {
                 surename = value;
-                print(surename); // todo:probebly from here save to database
+                print(surename);
               },
               validator: (String value) {
                 if (value.isEmpty) {
@@ -115,6 +117,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   flex: 4,
                   child: InputTextField(
                     text: 'Date of Birth',
+                    controller: surenameTextController,
                     onChanged: (value) {
                       dateOfBirth = value;
                     },
@@ -181,19 +184,21 @@ class _PatientDetailsState extends State<PatientDetails> {
                       'surename': surename,
                       'name': name,
                       'fatherName': fatherName,
-                      'gender': Gender,
+                      'gender': selectedGender
+                          .toString(), // todo: need to fix, Gender.Male should be like Male,Female
                       'dateOfBirth': dateOfBirth,
                       'age': age,
                       'comment': comment,
                       'moblieNo': moblieNo,
                       'email': email,
                     });
-                    print('done'); // for check
+                    print('done');
+                    surenameTextController.clear(); // for check
                   }
                 } catch (e) {
                   print(e);
                 }
-              }, // todo: sent to database
+              },
               child: Text(
                 'submit',
               ),
@@ -211,12 +216,14 @@ class InputTextField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.keyboardType,
+    this.controller,
   });
 
   final String text;
   final Function onChanged;
   final Function validator;
   final TextInputType keyboardType;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -236,6 +243,7 @@ class InputTextField extends StatelessWidget {
         validator: validator,
         onChanged: onChanged,
         keyboardType: keyboardType,
+        controller: controller,
       ),
     );
   }
