@@ -187,7 +187,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       'name': name,
                       'fatherName': fatherName,
                       'gender': selectedGender.toString(),
-                      // todo: need to fix, Gender.Male should be like Male,Female
+                      // todo: need to change, Gender.Male should be like Male,Female
                       'dateOfBirth': dateOfBirth,
                       'age': age,
                       'comment': comment,
