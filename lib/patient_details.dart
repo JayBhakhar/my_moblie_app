@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:star_smile/home.dart';
 import 'package:validators/validators.dart' as validator;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -152,6 +153,7 @@ class _PatientDetailsState extends State<PatientDetails> {
             ),
             InputTextField(
               text: 'Comment',
+              maxLines: 3,
               onChanged: (value) {
                 comment = value;
               },
@@ -184,16 +186,24 @@ class _PatientDetailsState extends State<PatientDetails> {
                       'surename': surename,
                       'name': name,
                       'fatherName': fatherName,
-                      'gender': selectedGender
-                          .toString(), // todo: need to fix, Gender.Male should be like Male,Female
+                      'gender': selectedGender.toString(),
+                      // todo: need to fix, Gender.Male should be like Male,Female
                       'dateOfBirth': dateOfBirth,
                       'age': age,
                       'comment': comment,
                       'moblieNo': moblieNo,
                       'email': email,
                     });
-                    print('done');
-                    surenameTextController.clear(); // for check
+                    print('done'); // for check
+                    surenameTextController.clear(); // not needed
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Home();
+                        },
+                      ),
+                    );
                   }
                 } catch (e) {
                   print(e);
@@ -217,6 +227,7 @@ class InputTextField extends StatelessWidget {
     this.validator,
     this.keyboardType,
     this.controller,
+    this.maxLines,
   });
 
   final String text;
@@ -224,6 +235,7 @@ class InputTextField extends StatelessWidget {
   final Function validator;
   final TextInputType keyboardType;
   final TextEditingController controller;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -244,6 +256,7 @@ class InputTextField extends StatelessWidget {
         onChanged: onChanged,
         keyboardType: keyboardType,
         controller: controller,
+        maxLines: maxLines,
       ),
     );
   }
