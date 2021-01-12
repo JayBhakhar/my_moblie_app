@@ -118,7 +118,6 @@ class _PatientDetailsState extends State<PatientDetails> {
                   flex: 2,
                   child: InputTextField(
                     text: 'Date of Birth',
-                    controller: surenameTextController,
                     onChanged: (value) {
                       dateOfBirth = value;
                     },
