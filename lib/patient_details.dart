@@ -115,7 +115,7 @@ class _PatientDetailsState extends State<PatientDetails> {
             Row(
               children: [
                 Expanded(
-                  flex: 4,
+                  flex: 2,
                   child: InputTextField(
                     text: 'Date of Birth',
                     controller: surenameTextController,

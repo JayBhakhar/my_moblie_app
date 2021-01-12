@@ -10,12 +10,14 @@ enum FirstAnswers { a, b, c }
 enum SecondAnswers { a, b, c, d }
 enum ThirdAnswers { a, b }
 enum ForthAnswers { a, b }
+enum FifthAnswers { a, b } // first quesion third opnion
 
 class _PlanOfTreatmentState extends State<PlanOfTreatment> {
   FirstAnswers selectedAnswer1 = FirstAnswers.a;
   SecondAnswers selectedAnswer2 = SecondAnswers.a;
   ThirdAnswers selectedAnswer3 = ThirdAnswers.a;
   ForthAnswers selectedAnswer4 = ForthAnswers.a;
+  FifthAnswers selectedAnswer5 = FifthAnswers.a;
   bool checkedValue = false;
 
   @override
@@ -75,6 +77,45 @@ class _PlanOfTreatmentState extends State<PlanOfTreatment> {
                 },
               ),
             ),
+            Builder(builder: (context) {
+              if (selectedAnswer1 == FirstAnswers.c)
+                return Column(
+                  children: [
+                    Text('question appear, when third opnion is selected'),
+                    ListTile(
+                      title: Text('option a'),
+                      leading: Radio(
+                        activeColor: Colors.black,
+                        value: FifthAnswers.a,
+                        groupValue: selectedAnswer5,
+                        onChanged: (FifthAnswers value) {
+                          setState(() {
+                            selectedAnswer5 = value;
+                          });
+                        },
+                      ),
+                    ),
+                    ListTile(
+                      title: Text('option b'),
+                      leading: Radio(
+                        activeColor: Colors.black,
+                        value: FifthAnswers.b,
+                        groupValue: selectedAnswer5,
+                        onChanged: (FifthAnswers value) {
+                          setState(() {
+                            selectedAnswer5 = value;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              else
+                return Container(
+                  width: 0,
+                  height: 0,
+                );
+            }),
             Text('2. question'),
             ListTile(
               title: Text('option a'),
@@ -116,7 +157,7 @@ class _PlanOfTreatmentState extends State<PlanOfTreatment> {
               ),
             ),
             ListTile(
-              title: Text('option d'),
+              title: Text('option d / other'),
               leading: Radio(
                 activeColor: Colors.black,
                 value: SecondAnswers.d,
@@ -128,6 +169,27 @@ class _PlanOfTreatmentState extends State<PlanOfTreatment> {
                 },
               ),
             ),
+            Builder(builder: (context) {
+              if (selectedAnswer2 == SecondAnswers.d)
+                return TextField(
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(15.0),
+                    border: InputBorder.none,
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    hintText: 'Comment',
+                    hintStyle: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                  maxLines: 3,
+                );
+              else
+                return Container(
+                  width: 0,
+                  height: 0,
+                );
+            }),
             Text('3. question'),
             ListTile(
               title: Text('option a'),
@@ -183,7 +245,7 @@ class _PlanOfTreatmentState extends State<PlanOfTreatment> {
               ),
             ),
             ListTile(
-              title: Text('option b'),
+              title: Text('option b/ add class'),
               leading: Radio(
                 activeColor: Colors.black,
                 value: ForthAnswers.b,
@@ -195,6 +257,16 @@ class _PlanOfTreatmentState extends State<PlanOfTreatment> {
                 },
               ),
             ),
+            Builder(builder: (context) {
+              if (selectedAnswer4 == ForthAnswers.b)
+                return Text('huge class, axaxa');
+              else
+                return Container(
+                  width: 0,
+                  height: 0,
+                );
+            }),
+            //todo: add class
             CheckboxListTile(
               title: Text("have a feeling of pain....."),
               activeColor: Colors.black,
@@ -226,3 +298,12 @@ class _PlanOfTreatmentState extends State<PlanOfTreatment> {
     );
   }
 }
+
+// Builder(builder: (context) {
+// if (selectedGender == Gender.Male)
+// return Text('male');
+// else
+// return Container(
+//   width: 0,
+//   height: 0,
+// );}),
