@@ -88,7 +88,7 @@ class _ScansState extends State<Scans> {
             ],
           ),
           Expanded(
-            child: Column(
+            child: ListView(
               children: <Widget>[
                 Builder(builder: (context) {
                   if (switchValue2)
@@ -127,6 +127,7 @@ class _ScansState extends State<Scans> {
                       child: Column(
                         children: [
                           Expanded(
+                            flex: 1,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
@@ -142,6 +143,7 @@ class _ScansState extends State<Scans> {
                                   ),
                                 ),
                                 Expanded(
+                                  flex: 1,
                                   child: AddPhotosContainer(
                                     onPress: getImage2,
                                     cardChild: _image2 == null

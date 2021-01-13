@@ -171,8 +171,11 @@ class _PatientDetailsState extends State<PatientDetails> {
               },
               keyboardType: TextInputType.emailAddress,
               validator: (String value) {
-                if (!validator.isEmail(value)) {
-                  return 'Please enter a valid email';
+                if (value.isEmpty == false) {
+                  if (!validator.isEmail(value)) {
+                    return 'Please enter a valid email';
+                  }
+                  return null;
                 }
                 return null;
               },
@@ -211,7 +214,7 @@ class _PatientDetailsState extends State<PatientDetails> {
               child: Text(
                 'submit',
               ),
-            )
+            ),
           ],
         ),
       ),

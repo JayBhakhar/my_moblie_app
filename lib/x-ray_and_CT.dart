@@ -69,7 +69,7 @@ class _XrayAndCtState extends State<XrayAndCt> {
                   ? Icon(Icons.add_a_photo)
                   : Image.file(_image1),
               colour: Colors.white,
-              text: '5',
+              text: '1',
             ),
           ),
           Expanded(
@@ -79,7 +79,7 @@ class _XrayAndCtState extends State<XrayAndCt> {
                   ? Icon(Icons.add_a_photo)
                   : Image.file(_image2),
               colour: Colors.white,
-              text: '6',
+              text: '2',
             ),
           ),
           Expanded(
@@ -89,7 +89,7 @@ class _XrayAndCtState extends State<XrayAndCt> {
                   ? Icon(Icons.add_a_photo)
                   : Image.file(_image3),
               colour: Colors.white,
-              text: '7',
+              text: '3',
             ),
           ),
         ],
