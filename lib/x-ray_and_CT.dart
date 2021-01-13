@@ -1,9 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:star_smile/Scans.dart';
 import 'package:star_smile/addPhotosContainer.dart';
+import 'package:star_smile/photos.dart';
 
 class XrayAndCt extends StatefulWidget {
   @override
@@ -58,6 +59,53 @@ class _XrayAndCtState extends State<XrayAndCt> {
     return Scaffold(
       appBar: AppBar(
         title: Text('X-ray and CT-scan'),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Photos();
+                    },
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scans();
+                    },
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.arrow_forward,
+                color: Colors.black,
+              ),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.close),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.check),
+            ),
+          ],
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

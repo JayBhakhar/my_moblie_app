@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:star_smile/home.dart';
+import 'package:star_smile/plan_of_treatment.dart';
 import 'package:validators/validators.dart' as validator;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -29,6 +30,44 @@ class _PatientDetailsState extends State<PatientDetails> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Patient Details'),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FlatButton(
+              onPressed: null,
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.grey,
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PlanOfTreatment();
+                    },
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.arrow_forward,
+                color: Colors.black,
+              ),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.close),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.check),
+            ),
+          ],
+        ),
       ),
       body: Form(
         key: _formKey,

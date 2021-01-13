@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:star_smile/addPhotosContainer.dart';
+import 'package:star_smile/plan_of_treatment.dart';
+import 'package:star_smile/x-ray_and_CT.dart';
 
 class Photos extends StatefulWidget {
   @override
@@ -109,6 +111,53 @@ class _PhotosState extends State<Photos> {
       appBar: AppBar(
         title: Text(
           'Photos',
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PlanOfTreatment();
+                    },
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return XrayAndCt();
+                    },
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.arrow_forward,
+                color: Colors.black,
+              ),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.close),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.check),
+            ),
+          ],
         ),
       ),
       body: Column(

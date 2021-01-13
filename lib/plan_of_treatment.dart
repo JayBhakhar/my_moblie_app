@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:star_smile/patient_details.dart';
+import 'package:star_smile/photos.dart';
 
 class PlanOfTreatment extends StatefulWidget {
   @override
@@ -26,6 +28,53 @@ class _PlanOfTreatmentState extends State<PlanOfTreatment> {
       appBar: AppBar(
         title: Text(
           'plan of treantment',
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PatientDetails();
+                    },
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Photos();
+                    },
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.arrow_forward,
+                color: Colors.black,
+              ),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.close),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.check),
+            ),
+          ],
         ),
       ),
       body: Padding(

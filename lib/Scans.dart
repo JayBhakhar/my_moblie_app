@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:star_smile/addPhotosContainer.dart';
+import 'package:star_smile/x-ray_and_CT.dart';
 
 class Scans extends StatefulWidget {
   @override
@@ -60,6 +61,43 @@ class _ScansState extends State<Scans> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Scans'),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return XrayAndCt();
+                    },
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(
+                Icons.arrow_forward,
+              ),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.close),
+            ),
+            FlatButton(
+              onPressed: null,
+              child: Icon(Icons.check),
+            ),
+          ],
+        ),
       ),
       body: Column(
         children: [
