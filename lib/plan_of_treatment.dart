@@ -4,6 +4,7 @@ import 'package:star_smile/patient_details.dart';
 import 'package:star_smile/photos.dart';
 
 class PlanOfTreatment extends StatefulWidget {
+  static String id = 'plan_of_treatment';
   @override
   _PlanOfTreatmentState createState() => _PlanOfTreatmentState();
 }
@@ -36,14 +37,7 @@ class _PlanOfTreatmentState extends State<PlanOfTreatment> {
           children: [
             FlatButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return PatientDetails();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, PatientDetails.id);
               },
               child: Icon(
                 Icons.arrow_back,
@@ -52,14 +46,7 @@ class _PlanOfTreatmentState extends State<PlanOfTreatment> {
             ),
             FlatButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Photos();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, Photos.id);
               },
               child: Icon(
                 Icons.arrow_forward,

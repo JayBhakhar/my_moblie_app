@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:star_smile/Scans.dart';
+import 'package:star_smile/scans.dart';
 import 'package:star_smile/patient_details.dart';
 import 'package:star_smile/photos.dart';
 import 'package:star_smile/plan_of_treatment.dart';
@@ -47,70 +47,35 @@ class Home extends StatelessWidget {
                 // leading: Icon(Icons.message),//TODO:add a status icon
                 title: Text('Patient Detail'),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return PatientDetails();
-                      },
-                    ),
-                  );
+                  Navigator.pushNamed(context, PatientDetails.id);
                 },
               ),
               ListTile(
                 // leading: Icon(Icons.account_circle),
                 title: Text('Plan of Treatment'),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return PlanOfTreatment();
-                      },
-                    ),
-                  );
+                  Navigator.pushNamed(context, PlanOfTreatment.id);
                 },
               ),
               ListTile(
                 // leading: Icon(Icons.settings),
                 title: Text('Photos'),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return Photos();
-                      },
-                    ),
-                  );
+                  Navigator.pushNamed(context, Photos.id);
                 },
               ),
               ListTile(
                 // leading: Icon(Icons.settings),
                 title: Text('X-Ray And CT-scan'),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return XrayAndCt();
-                      },
-                    ),
-                  );
+                  Navigator.pushNamed(context, XrayAndCt.id);
                 },
               ),
               ListTile(
                 // leading: Icon(Icons.settings),
                 title: Text('Scans'),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return Scans();
-                      },
-                    ),
-                  );
+                  Navigator.pushNamed(context, Scans.id);
                 },
               ),
             ],

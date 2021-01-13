@@ -5,6 +5,7 @@ import 'package:validators/validators.dart' as validator;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PatientDetails extends StatefulWidget {
+  static String id = 'patient_details';
   @override
   _PatientDetailsState createState() => _PatientDetailsState();
 }
@@ -44,14 +45,7 @@ class _PatientDetailsState extends State<PatientDetails> {
             ),
             FlatButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return PlanOfTreatment();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, PlanOfTreatment.id);
               },
               child: Icon(
                 Icons.arrow_forward,
@@ -253,7 +247,7 @@ class _PatientDetailsState extends State<PatientDetails> {
               child: Text(
                 'submit',
               ),
-            ),
+            ), // no needed
           ],
         ),
       ),

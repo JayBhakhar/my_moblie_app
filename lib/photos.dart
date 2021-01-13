@@ -6,6 +6,7 @@ import 'package:star_smile/plan_of_treatment.dart';
 import 'package:star_smile/x-ray_and_CT.dart';
 
 class Photos extends StatefulWidget {
+  static String id = 'photos';
   @override
   _PhotosState createState() => _PhotosState();
 }
@@ -119,14 +120,7 @@ class _PhotosState extends State<Photos> {
           children: [
             FlatButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return PlanOfTreatment();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, PlanOfTreatment.id);
               },
               child: Icon(
                 Icons.arrow_back,
@@ -135,14 +129,7 @@ class _PhotosState extends State<Photos> {
             ),
             FlatButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return XrayAndCt();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, XrayAndCt.id);
               },
               child: Icon(
                 Icons.arrow_forward,

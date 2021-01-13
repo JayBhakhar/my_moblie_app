@@ -5,6 +5,7 @@ import 'package:star_smile/addPhotosContainer.dart';
 import 'package:star_smile/x-ray_and_CT.dart';
 
 class Scans extends StatefulWidget {
+  static String id = 'scans';
   @override
   _ScansState createState() => _ScansState();
 }
@@ -68,14 +69,7 @@ class _ScansState extends State<Scans> {
           children: [
             FlatButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return XrayAndCt();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, XrayAndCt.id);
               },
               child: Icon(
                 Icons.arrow_back,

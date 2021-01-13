@@ -1,6 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:star_smile/home.dart';
+import 'package:star_smile/patient_details.dart';
+import 'package:star_smile/photos.dart';
+import 'package:star_smile/plan_of_treatment.dart';
+import 'package:star_smile/scans.dart';
+import 'package:star_smile/x-ray_and_CT.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +23,13 @@ class Myapp extends StatelessWidget {
         accentColor: Colors.white,
       ),
       home: Home(),
+      routes: {
+        PatientDetails.id: (context) => PatientDetails(),
+        PlanOfTreatment.id: (context) => PlanOfTreatment(),
+        Photos.id: (context) => Photos(),
+        XrayAndCt.id: (context) => XrayAndCt(),
+        Scans.id: (context) => Scans(),
+      },
     );
   }
 }

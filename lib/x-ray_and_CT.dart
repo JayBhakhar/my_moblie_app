@@ -2,11 +2,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:star_smile/Scans.dart';
+import 'package:star_smile/scans.dart';
 import 'package:star_smile/addPhotosContainer.dart';
 import 'package:star_smile/photos.dart';
 
 class XrayAndCt extends StatefulWidget {
+  static String id = 'x-ray_and_CT';
   @override
   _XrayAndCtState createState() => _XrayAndCtState();
 }
@@ -66,14 +67,7 @@ class _XrayAndCtState extends State<XrayAndCt> {
           children: [
             FlatButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Photos();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, Photos.id);
               },
               child: Icon(
                 Icons.arrow_back,
@@ -82,14 +76,7 @@ class _XrayAndCtState extends State<XrayAndCt> {
             ),
             FlatButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Scans();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, Scans.id);
               },
               child: Icon(
                 Icons.arrow_forward,
