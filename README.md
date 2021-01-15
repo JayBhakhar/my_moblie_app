@@ -1,4 +1,4 @@
-# star_smile
+# my_mobile_app
 
 A new Flutter application.
 

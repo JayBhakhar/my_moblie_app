@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:star_smile/home.dart';
+import 'package:star_smile/main.dart';
+import 'package:star_smile/photos.dart';
 import 'package:star_smile/plan_of_treatment.dart';
+import 'package:star_smile/scans.dart';
+import 'package:star_smile/x-ray_and_CT.dart';
 import 'package:validators/validators.dart' as validator;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -32,6 +36,84 @@ class _PatientDetailsState extends State<PatientDetails> {
       appBar: AppBar(
         title: Text('Patient Details'),
       ),
+      drawer: SafeArea(
+        child: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Myapp();
+                        },
+                      ),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.home,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 10.0),
+                      Text(
+                        'Home',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ListTile(
+                // leading: Icon(Icons.message),//TODO:add a status icon
+                title: Text('Patient Detail'),
+                onTap: () {
+                  // Navigator.pushNamed(context, PatientDetails.id);
+                  Navigator.pushNamed(context, PatientDetails.id);
+                },
+              ),
+              ListTile(
+                // leading: Icon(Icons.account_circle),
+                title: Text('Plan of Treatment'),
+                onTap: () {
+                  Navigator.pushNamed(context, PlanOfTreatment.id);
+                },
+              ),
+              ListTile(
+                // leading: Icon(Icons.settings),
+                title: Text('Photos'),
+                onTap: () {
+                  Navigator.pushNamed(context, Photos.id);
+                },
+              ),
+              ListTile(
+                // leading: Icon(Icons.settings),
+                title: Text('X-Ray And CT-scan'),
+                onTap: () {
+                  Navigator.pushNamed(context, XrayAndCt.id);
+                },
+              ),
+              ListTile(
+                // leading: Icon(Icons.settings),
+                title: Text('Scans'),
+                onTap: () {
+                  Navigator.pushNamed(context, Scans.id);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,7 +127,7 @@ class _PatientDetailsState extends State<PatientDetails> {
             ),
             FlatButton(
               onPressed: () {
-                Navigator.pushNamed(context, PlanOfTreatment.id);
+                Navigator.pushReplacementNamed(context, PlanOfTreatment.id);
               },
               child: Icon(
                 Icons.arrow_forward,
@@ -72,7 +154,6 @@ class _PatientDetailsState extends State<PatientDetails> {
               controller: surenameTextController,
               onChanged: (value) {
                 surename = value;
-                print(surename);
               },
               validator: (String value) {
                 if (value.isEmpty) {
@@ -170,7 +251,6 @@ class _PatientDetailsState extends State<PatientDetails> {
                     text: 'Age',
                     onChanged: (value) {
                       age = value;
-                      print(age);
                     },
                     keyboardType: TextInputType.number,
                     validator: (String value) {
@@ -221,7 +301,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       'surename': surename,
                       'name': name,
                       'fatherName': fatherName,
-                      'gender': selectedGender.toString(),
+                      'gender': selectedGender.index,
                       // todo: need to change, Gender.Male should be like Male,Female
                       'dateOfBirth': dateOfBirth,
                       'age': age,
@@ -229,7 +309,8 @@ class _PatientDetailsState extends State<PatientDetails> {
                       'moblieNo': moblieNo,
                       'email': email,
                     });
-                    print('done'); // for check
+                    print('done');
+                    print(selectedGender.index); // for check
                     surenameTextController.clear(); // not needed
                     Navigator.push(
                       context,
