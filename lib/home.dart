@@ -176,7 +176,7 @@ class PatientList extends StatelessWidget {
   final String name;
   final String surename;
   final String fatherName;
-  final String gender;
+  final int gender;
   final String dateOfBirth;
   final String age;
   final String comment;
@@ -215,11 +215,11 @@ class PatientList extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-              ),
-              Text(
-                '$name $surename',
-                style: TextStyle(
-                  color: Colors.pinkAccent,
+                child: Text(
+                  '$name $surename',
+                  style: TextStyle(
+                    color: Colors.pinkAccent,
+                  ),
                 ),
               ),
             ],
@@ -245,7 +245,7 @@ class Patient extends StatelessWidget {
   final String name;
   final String surename;
   final String fatherName;
-  final String gender;
+  final int gender;
   final String dateOfBirth;
   final String age;
   final String comment;
@@ -263,7 +263,14 @@ class Patient extends StatelessWidget {
           Text('Surename : $surename'),
           Text('Name : $name'),
           Text('Father Name : $fatherName'),
-          Text('Gender : $gender'),
+          Builder(builder: (context) {
+            if (gender == 0)
+              return Text('Gender : Male');
+            else if (gender == 1)
+              return Text('Gender : Female');
+            else
+              return Text('Gender : Other');
+          }),
           Text('Date of Birth : $dateOfBirth'),
           Text('age : $age'),
           Text('Comment : $comment'),

@@ -27,7 +27,7 @@ class _PatientDetailsState extends State<PatientDetails> {
   String dateOfBirth;
   String age;
   String comment;
-  String moblieNo;
+  String mobileNo;
   String email;
 
   @override
@@ -161,6 +161,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                 }
                 return null;
               },
+              maxLines: 1,
             ),
             InputTextField(
               text: 'Name',
@@ -173,6 +174,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                 }
                 return null;
               },
+              maxLines: 1,
             ),
             InputTextField(
               text: 'Father Name',
@@ -185,6 +187,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                 }
                 return null;
               },
+              maxLines: 1,
             ),
             Text('Gender'),
             ListTile(
@@ -242,6 +245,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       }
                       return null;
                     },
+                    maxLines: 1,
                   ),
                 ),
                 SizedBox(width: 10.0),
@@ -259,6 +263,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       }
                       return null;
                     },
+                    maxLines: 1,
                   ),
                 ),
               ],
@@ -271,9 +276,9 @@ class _PatientDetailsState extends State<PatientDetails> {
               },
             ),
             InputTextField(
-              text: 'Moblie No.',
+              text: 'Mobile No.',
               onChanged: (value) {
-                moblieNo = value;
+                mobileNo = value;
               },
               keyboardType: TextInputType.phone,
             ),
@@ -292,6 +297,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                 }
                 return null;
               },
+              maxLines: 1,
             ),
             FlatButton(
               onPressed: () async {
@@ -306,7 +312,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       'dateOfBirth': dateOfBirth,
                       'age': age,
                       'comment': comment,
-                      'moblieNo': moblieNo,
+                      'mobileNo': mobileNo,
                       'email': email,
                     });
                     print('done');
