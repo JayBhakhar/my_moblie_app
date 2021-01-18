@@ -119,17 +119,33 @@ class PatientDetailsStream extends StatelessWidget {
           );
         }
         final patients = snapshot.data.docs;
+
         List<PatientList> patientsList = [];
         for (var patient in patients) {
-          final nameText = patient.data()['name'];
           final surenameText = patient.data()['surename'];
+          final nameText = patient.data()['name'];
+          final fatherNameText = patient.data()['fatherName'];
+          final genderIndex = patient.data()['gender'];
+          final dateOfBirthText = patient.data()['dateOfBirth'];
+          final ageText = patient.data()['age'];
+          final commentText = patient.data()['comment'];
+          final mobileNoText = patient.data()['mobileNo'];
+          final emailText = patient.data()['email'];
 
           final patientData = PatientList(
             name: nameText,
             surename: surenameText,
+            fatherName: fatherNameText,
+            gender: genderIndex,
+            dateOfBirth: dateOfBirthText,
+            age: ageText,
+            comment: commentText,
+            mobileNo: mobileNoText,
+            email: emailText,
           );
           patientsList.add(patientData);
         }
+
         return Expanded(
           child: ListView(
             padding: EdgeInsets.symmetric(
@@ -145,15 +161,51 @@ class PatientDetailsStream extends StatelessWidget {
 }
 
 class PatientList extends StatelessWidget {
-  PatientList({this.name, this.surename});
+  PatientList({
+    this.name,
+    this.surename,
+    this.fatherName,
+    this.gender,
+    this.dateOfBirth,
+    this.age,
+    this.comment,
+    this.mobileNo,
+    this.email,
+  });
 
   final String name;
   final String surename;
+  final String fatherName;
+  final String gender;
+  final String dateOfBirth;
+  final String age;
+  final String comment;
+  final String mobileNo;
+  final String email;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return Patient(
+                name: name,
+                surename: surename,
+                fatherName: fatherName,
+                gender: gender,
+                dateOfBirth: dateOfBirth,
+                age: age,
+                comment: comment,
+                mobileNo: mobileNo,
+                email: email,
+              );
+            },
+          ),
+        );
+      },
       child: Column(
         children: [
           Column(
@@ -172,6 +224,51 @@ class PatientList extends StatelessWidget {
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class Patient extends StatelessWidget {
+  Patient({
+    this.name,
+    this.surename,
+    this.fatherName,
+    this.gender,
+    this.dateOfBirth,
+    this.age,
+    this.comment,
+    this.mobileNo,
+    this.email,
+  });
+  final String name;
+  final String surename;
+  final String fatherName;
+  final String gender;
+  final String dateOfBirth;
+  final String age;
+  final String comment;
+  final String mobileNo;
+  final String email;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('patient'),
+      ),
+      body: Column(
+        children: [
+          Text('Surename : $surename'),
+          Text('Name : $name'),
+          Text('Father Name : $fatherName'),
+          Text('Gender : $gender'),
+          Text('Date of Birth : $dateOfBirth'),
+          Text('age : $age'),
+          Text('Comment : $comment'),
+          Text('Moblie No. : $mobileNo'),
+          Text('Email : $email'),
         ],
       ),
     );
