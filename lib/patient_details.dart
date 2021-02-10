@@ -78,7 +78,6 @@ class _PatientDetailsState extends State<PatientDetails> {
                 // leading: Icon(Icons.message),//TODO:add a status icon
                 title: Text('Patient Detail'),
                 onTap: () {
-                  // Navigator.pushNamed(context, PatientDetails.id);
                   Navigator.pushNamed(context, PatientDetails.id);
                 },
               ),
@@ -308,7 +307,6 @@ class _PatientDetailsState extends State<PatientDetails> {
                       'name': name,
                       'fatherName': fatherName,
                       'gender': selectedGender.index,
-                      // todo: need to change, Gender.Male should be like Male,Female
                       'dateOfBirth': dateOfBirth,
                       'age': age,
                       'comment': comment,

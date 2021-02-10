@@ -119,9 +119,9 @@ class PatientDetailsStream extends StatelessWidget {
           );
         }
         final patients = snapshot.data.docs;
-
         List<PatientList> patientsList = [];
         for (var patient in patients) {
+          final patientID = patient.reference.id;
           final surenameText = patient.data()['surename'];
           final nameText = patient.data()['name'];
           final fatherNameText = patient.data()['fatherName'];
@@ -133,6 +133,7 @@ class PatientDetailsStream extends StatelessWidget {
           final emailText = patient.data()['email'];
 
           final patientData = PatientList(
+            id: patientID,
             name: nameText,
             surename: surenameText,
             fatherName: fatherNameText,
@@ -162,6 +163,7 @@ class PatientDetailsStream extends StatelessWidget {
 
 class PatientList extends StatelessWidget {
   PatientList({
+    this.id,
     this.name,
     this.surename,
     this.fatherName,
@@ -172,7 +174,7 @@ class PatientList extends StatelessWidget {
     this.mobileNo,
     this.email,
   });
-
+  final String id;
   final String name;
   final String surename;
   final String fatherName;
@@ -192,6 +194,7 @@ class PatientList extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) {
               return Patient(
+                id: id,
                 name: name,
                 surename: surename,
                 fatherName: fatherName,
@@ -231,7 +234,9 @@ class PatientList extends StatelessWidget {
 }
 
 class Patient extends StatelessWidget {
+  final db = FirebaseFirestore.instance;
   Patient({
+    this.id,
     this.name,
     this.surename,
     this.fatherName,
@@ -242,7 +247,8 @@ class Patient extends StatelessWidget {
     this.mobileNo,
     this.email,
   });
-  final String name;
+  String id;
+  String name;
   final String surename;
   final String fatherName;
   final int gender;
@@ -260,6 +266,20 @@ class Patient extends StatelessWidget {
       ),
       body: Column(
         children: [
+          TextField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(15.0),
+                border: InputBorder.none,
+                filled: true,
+                fillColor: Colors.grey[200],
+                hintText: name,
+                hintStyle: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              onChanged: (value) {
+                name = value;
+              }),
           Text('Surename : $surename'),
           Text('Name : $name'),
           Text('Father Name : $fatherName'),
@@ -276,6 +296,31 @@ class Patient extends StatelessWidget {
           Text('Comment : $comment'),
           Text('Moblie No. : $mobileNo'),
           Text('Email : $email'),
+          FlatButton(
+            onPressed: () async {
+              try {
+                if (true) {
+                  await db.collection('patient_details').doc(id).update({
+                    'name': name,
+                  });
+                  print('done'); // not needed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Home();
+                      },
+                    ),
+                  );
+                }
+              } catch (e) {
+                print(e);
+              }
+            },
+            child: Text(
+              'submit',
+            ),
+          ),
         ],
       ),
     );
