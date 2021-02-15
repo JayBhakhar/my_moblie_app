@@ -193,12 +193,12 @@ class PatientList extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return Patient(
-                id: id,
+              return PatientDetails( //todo: should go to patient details
+                // id: id,
                 name: name,
                 surename: surename,
                 fatherName: fatherName,
-                gender: gender,
+                // gender: gender,
                 dateOfBirth: dateOfBirth,
                 age: age,
                 comment: comment,

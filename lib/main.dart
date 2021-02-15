@@ -24,7 +24,7 @@ class Myapp extends StatelessWidget {
       ),
       home: Home(),
       routes: {
-        PatientDetails.id: (context) => PatientDetails(),
+        PatientDetails.id: (context) => PatientDetails(surename: 'Surename',name: 'Name',fatherName: 'Fathername',dateOfBirth: 'Date of Birth',age: 'Age',comment: 'Comment',mobileNo:'Mobile No.', email:'Email',),
         PlanOfTreatment.id: (context) => PlanOfTreatment(),
         Photos.id: (context) => Photos(),
         XrayAndCt.id: (context) => XrayAndCt(),

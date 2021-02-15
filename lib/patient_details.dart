@@ -10,6 +10,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PatientDetails extends StatefulWidget {
   static String id = 'patient_details';
+  String surename;
+  String name;
+  String fatherName;
+  String dateOfBirth;
+  String age;
+  String comment;
+  String mobileNo;
+  String email;
+  PatientDetails({this.surename,this.name,this.fatherName,this.dateOfBirth,this.age,this.comment,this.mobileNo,this.email});
   @override
   _PatientDetailsState createState() => _PatientDetailsState();
 }
@@ -149,7 +158,7 @@ class _PatientDetailsState extends State<PatientDetails> {
         child: ListView(
           children: [
             InputTextField(
-              text: 'Surename',
+              text: widget.surename,
               controller: surenameTextController,
               onChanged: (value) {
                 surename = value;
@@ -163,7 +172,7 @@ class _PatientDetailsState extends State<PatientDetails> {
               maxLines: 1,
             ),
             InputTextField(
-              text: 'Name',
+              text: widget.name,
               onChanged: (value) {
                 name = value;
               },
@@ -176,7 +185,7 @@ class _PatientDetailsState extends State<PatientDetails> {
               maxLines: 1,
             ),
             InputTextField(
-              text: 'Father Name',
+              text: widget.fatherName,
               onChanged: (value) {
                 fatherName = value;
               },
@@ -233,7 +242,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                 Expanded(
                   flex: 2,
                   child: InputTextField(
-                    text: 'Date of Birth',
+                    text: widget.dateOfBirth,
                     onChanged: (value) {
                       dateOfBirth = value;
                     },
@@ -251,7 +260,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                 Expanded(
                   flex: 2,
                   child: InputTextField(
-                    text: 'Age',
+                    text: widget.age,
                     onChanged: (value) {
                       age = value;
                     },
@@ -268,21 +277,21 @@ class _PatientDetailsState extends State<PatientDetails> {
               ],
             ),
             InputTextField(
-              text: 'Comment',
+              text: widget.comment,
               maxLines: 3,
               onChanged: (value) {
                 comment = value;
               },
             ),
             InputTextField(
-              text: 'Mobile No.',
+              text: widget.mobileNo,
               onChanged: (value) {
                 mobileNo = value;
               },
               keyboardType: TextInputType.phone,
             ),
             InputTextField(
-              text: 'Email',
+              text: widget.email,
               onChanged: (value) {
                 email = value;
               },
@@ -381,3 +390,4 @@ class InputTextField extends StatelessWidget {
     );
   }
 }
+
