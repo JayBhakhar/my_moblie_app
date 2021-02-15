@@ -12,6 +12,7 @@ enum Gender { Male, Female, Other }
 
 class PatientDetails extends StatefulWidget {
   static String id = 'patient_details';
+  String userid;
   String surename;
   String name;
   String fatherName;
@@ -21,19 +22,27 @@ class PatientDetails extends StatefulWidget {
   String mobileNo;
   String email;
   int indexOfGender;
-  PatientDetails({this.surename,this.name,this.fatherName,this.dateOfBirth,this.age,this.comment,this.mobileNo,this.email,this.indexOfGender});
+  PatientDetails({
+    this.userid,
+    this.surename,
+    this.name,
+    this.fatherName,
+    this.dateOfBirth,
+    this.age,
+    this.comment,
+    this.mobileNo,
+    this.email,
+    this.indexOfGender,
+  });
 
   @override
   _PatientDetailsState createState() => _PatientDetailsState();
 }
 
-
-
 class _PatientDetailsState extends State<PatientDetails> {
   final surenameTextController = TextEditingController();
   final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -307,7 +316,8 @@ class _PatientDetailsState extends State<PatientDetails> {
             FlatButton(
               onPressed: () async {
                 try {
-                  if (_formKey.currentState.validate()) {
+                  if (_formKey.currentState.validate() &&
+                      widget.userid == null) {
                     await db.collection('patient_details').add({
                       'surename': widget.surename,
                       'name': widget.name,
@@ -319,8 +329,8 @@ class _PatientDetailsState extends State<PatientDetails> {
                       'mobileNo': widget.mobileNo,
                       'email': widget.email,
                     });
-                    print('done');
-                    print(selectedGender.index); // for check
+                    print(widget.userid);
+                    print('add');
                     surenameTextController.clear(); // not needed
                     Navigator.push(
                       context,
@@ -330,7 +340,33 @@ class _PatientDetailsState extends State<PatientDetails> {
                         },
                       ),
                     );
+                  } else if (_formKey.currentState.validate() &&
+                      widget.userid != null) {
+                    await db
+                        .collection('patient_details')
+                        .doc(widget.userid)
+                        .update({
+                      'surename': widget.surename,
+                      'name': widget.name,
+                      'fatherName': widget.fatherName,
+                      'gender': selectedGender.index,
+                      'dateOfBirth': widget.dateOfBirth,
+                      'age': widget.age,
+                      'comment': widget.comment,
+                      'mobileNo': widget.mobileNo,
+                      'email': widget.email,
+                    });
+                    print('update');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Home();
+                        },
+                      ),
+                    );
                   }
+                  ;
                 } catch (e) {
                   print(e);
                 }
@@ -387,4 +423,3 @@ class InputTextField extends StatelessWidget {
     );
   }
 }
-

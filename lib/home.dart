@@ -193,8 +193,10 @@ class PatientList extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return PatientDetails( //todo: should go to patient details
+              return PatientDetails(
+                //todo: should go to patient details
                 // id: id,
+                userid: id,
                 name: name,
                 surename: surename,
                 fatherName: fatherName,
@@ -227,100 +229,6 @@ class PatientList extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Patient extends StatelessWidget {
-  final db = FirebaseFirestore.instance;
-  Patient({
-    this.id,
-    this.name,
-    this.surename,
-    this.fatherName,
-    this.gender,
-    this.dateOfBirth,
-    this.age,
-    this.comment,
-    this.mobileNo,
-    this.email,
-  });
-  String id;
-  String name;
-  final String surename;
-  final String fatherName;
-  final int gender;
-  final String dateOfBirth;
-  final String age;
-  final String comment;
-  final String mobileNo;
-  final String email;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('patient'),
-      ),
-      body: Column(
-        children: [
-          TextField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(15.0),
-                border: InputBorder.none,
-                filled: true,
-                fillColor: Colors.grey[200],
-                hintText: name,
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              onChanged: (value) {
-                name = value;
-              }),
-          Text('Surename : $surename'),
-          Text('Name : $name'),
-          Text('Father Name : $fatherName'),
-          Builder(builder: (context) {
-            if (gender == 0)
-              return Text('Gender : Male');
-            else if (gender == 1)
-              return Text('Gender : Female');
-            else
-              return Text('Gender : Other');
-          }),
-          Text('Date of Birth : $dateOfBirth'),
-          Text('age : $age'),
-          Text('Comment : $comment'),
-          Text('Moblie No. : $mobileNo'),
-          Text('Email : $email'),
-          FlatButton(
-            onPressed: () async {
-              try {
-                if (true) {
-                  await db.collection('patient_details').doc(id).update({
-                    'name': name,
-                  });
-                  print('done'); // not needed
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return Home();
-                      },
-                    ),
-                  );
-                }
-              } catch (e) {
-                print(e);
-              }
-            },
-            child: Text(
-              'submit',
-            ),
           ),
         ],
       ),
