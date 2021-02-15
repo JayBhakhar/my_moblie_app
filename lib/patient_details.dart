@@ -8,6 +8,8 @@ import 'package:star_smile/x-ray_and_CT.dart';
 import 'package:validators/validators.dart' as validator;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+enum Gender { Male, Female, Other }
+
 class PatientDetails extends StatefulWidget {
   static String id = 'patient_details';
   String surename;
@@ -18,29 +20,24 @@ class PatientDetails extends StatefulWidget {
   String comment;
   String mobileNo;
   String email;
-  PatientDetails({this.surename,this.name,this.fatherName,this.dateOfBirth,this.age,this.comment,this.mobileNo,this.email});
+  int indexOfGender;
+  PatientDetails({this.surename,this.name,this.fatherName,this.dateOfBirth,this.age,this.comment,this.mobileNo,this.email,this.indexOfGender});
+
   @override
   _PatientDetailsState createState() => _PatientDetailsState();
 }
 
-enum Gender { Male, Female, Other }
+
 
 class _PatientDetailsState extends State<PatientDetails> {
   final surenameTextController = TextEditingController();
   final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
-  Gender selectedGender = Gender.Male;
-  String surename;
-  String name;
-  String fatherName;
-  String dateOfBirth;
-  String age;
-  String comment;
-  String mobileNo;
-  String email;
+
 
   @override
   Widget build(BuildContext context) {
+    Gender selectedGender = Gender.values[widget.indexOfGender];
     return Scaffold(
       appBar: AppBar(
         title: Text('Patient Details'),
@@ -161,7 +158,7 @@ class _PatientDetailsState extends State<PatientDetails> {
               text: widget.surename,
               controller: surenameTextController,
               onChanged: (value) {
-                surename = value;
+                widget.surename = value;
               },
               validator: (String value) {
                 if (value.isEmpty) {
@@ -174,7 +171,7 @@ class _PatientDetailsState extends State<PatientDetails> {
             InputTextField(
               text: widget.name,
               onChanged: (value) {
-                name = value;
+                widget.name = value;
               },
               validator: (String value) {
                 if (value.isEmpty) {
@@ -187,7 +184,7 @@ class _PatientDetailsState extends State<PatientDetails> {
             InputTextField(
               text: widget.fatherName,
               onChanged: (value) {
-                fatherName = value;
+                widget.fatherName = value;
               },
               validator: (String value) {
                 if (value.isEmpty) {
@@ -244,7 +241,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   child: InputTextField(
                     text: widget.dateOfBirth,
                     onChanged: (value) {
-                      dateOfBirth = value;
+                      widget.dateOfBirth = value;
                     },
                     keyboardType: TextInputType.datetime,
                     validator: (String value) {
@@ -262,7 +259,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   child: InputTextField(
                     text: widget.age,
                     onChanged: (value) {
-                      age = value;
+                      widget.age = value;
                     },
                     keyboardType: TextInputType.number,
                     validator: (String value) {
@@ -280,20 +277,20 @@ class _PatientDetailsState extends State<PatientDetails> {
               text: widget.comment,
               maxLines: 3,
               onChanged: (value) {
-                comment = value;
+                widget.comment = value;
               },
             ),
             InputTextField(
               text: widget.mobileNo,
               onChanged: (value) {
-                mobileNo = value;
+                widget.mobileNo = value;
               },
               keyboardType: TextInputType.phone,
             ),
             InputTextField(
               text: widget.email,
               onChanged: (value) {
-                email = value;
+                widget.email = value;
               },
               keyboardType: TextInputType.emailAddress,
               validator: (String value) {
@@ -312,15 +309,15 @@ class _PatientDetailsState extends State<PatientDetails> {
                 try {
                   if (_formKey.currentState.validate()) {
                     await db.collection('patient_details').add({
-                      'surename': surename,
-                      'name': name,
-                      'fatherName': fatherName,
+                      'surename': widget.surename,
+                      'name': widget.name,
+                      'fatherName': widget.fatherName,
                       'gender': selectedGender.index,
-                      'dateOfBirth': dateOfBirth,
-                      'age': age,
-                      'comment': comment,
-                      'mobileNo': mobileNo,
-                      'email': email,
+                      'dateOfBirth': widget.dateOfBirth,
+                      'age': widget.age,
+                      'comment': widget.comment,
+                      'mobileNo': widget.mobileNo,
+                      'email': widget.email,
                     });
                     print('done');
                     print(selectedGender.index); // for check

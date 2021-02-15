@@ -198,6 +198,7 @@ class PatientList extends StatelessWidget {
                 name: name,
                 surename: surename,
                 fatherName: fatherName,
+                indexOfGender: gender,
                 // gender: gender,
                 dateOfBirth: dateOfBirth,
                 age: age,
